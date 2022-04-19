@@ -5,52 +5,87 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dropdown Selectbox</title>
+    <link rel="stylesheet" href="reset.css">
     <style>
-      form {
-        margin: 10% auto;
-        position: relative;
-        width: 300px;
+      .txt-ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      select {
+      .cont-select {
         width: 200px;
-        height: 40px;
+        margin: 100px auto 0;
+      }
+
+      .select-btn {
+        width: 100%;
+        padding: 13px 20px 13px 16px;
+        margin-bottom: 9px;
+        text-align: left;
         border: 1px solid #c4c4c4;
         box-sizing: border-box;
         border-radius: 10px;
-        padding-left: 14px;
-        -webkit-appearance: none;
-        outline: none;
-      }
-      select:focus {
-        border: 1px solid #9b51e0;
-        box-shadow: 0 0 5px 5px #f7e0ff;
+        cursor: pointer;
+        background: url("icon-Triangle-down.png") right 14px center no-repeat;
+        background-size: 12px 10px;
       }
 
-      .form img {
-        position: absolute;
-        top: 13px;
-        right: 115px;
-        width: 12px;
-        height: 12px;
+      .select-btn:focus {
+        border: 1px solid #9B51E0;
+        outline: 3px solid #F8E4FF;
       }
+
+      .select-btn.on {
+        background-image: url("icon-Triangle-up.png");
+      }
+      .select-btn.on + .lang-list {
+        display: block;
+      }
+
+      .lang-list {
+        display: none;
+        width: 200px;
+        border: 1px solid #c4c4c4;
+        box-sizing: border-box;
+        box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .lang-list li {
+        padding: 5px 10px;
+        line-height: 16px;
+      }
+
+      .lang-list li button {
+        display: block;
+        width: 100%;
+        padding: 10px 0 10px 10px;
+        cursor: pointer;
+        border-radius: 8px;
+        text-align: left;
+      }
+
+      .lang-list li button:focus,
+      .lang-list li button:hover {
+        background: #F8E4FF;
+      }
+
     </style>
   </head>
   <body>
-    <form action="" class="form">
-      <select name="fav-lang" id="fav-lang" class="select">
-        <div class="wrapper">
-          <option value="최애 프로그래밍 언어" selected>
-            최애 프로그래밍 언어
-          </option>
-          <option value="Python">Python</option>
-          <option value="java">Java</option>
-          <option value="javascript">JavaScript</option>
-          <option value="c#">C#</option>
-          <option value="c/c++">C/C++</option>
-        </div>
-      </select>
-      <img src="icon-Triangle-down.png" />
-    </form>
+    <article class="cont-select">
+      <h2 class="txt-hide">최애 프로그래밍 언어를 선택해 주세요.</h1>
+      <button type="button" class="select-btn txt-ellipsis on">최애 프로그래밍 언어</button>
+      <ul class="lang-list">
+        <li><button type="button" class="txt-ellipsis">Python</button></li>
+        <li><button type="button" class="txt-ellipsis">Java</button></li>
+        <li><button type="button" class="txt-ellipsis">JavaScript</button></li>
+        <li><button type="button" class="txt-ellipsis">C#</button></li>
+        <li><button type="button" class="txt-ellipsis">C/C++</button></li>
+      </ul>
+    </article>
+    <script></script>
   </body>
 </html>
