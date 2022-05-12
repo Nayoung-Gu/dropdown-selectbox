@@ -27,6 +27,14 @@
         box-sizing: border-box;
         border-radius: 10px;
         cursor: pointer;
+      }
+
+      .bg-up {
+        background: url("icon-Triangle-up.png") right 14px center no-repeat;
+        background-size: 12px 10px;
+      }
+
+      .bg-down {
         background: url("icon-Triangle-down.png") right 14px center no-repeat;
         background-size: 12px 10px;
       }
@@ -36,15 +44,7 @@
         outline: 3px solid #F8E4FF;
       }
 
-      .select-btn.on {
-        background-image: url("icon-Triangle-up.png");
-      }
-      .select-btn.on + .lang-list {
-        display: block;
-      }
-
       .lang-list {
-        display: none;
         width: 200px;
         border: 1px solid #c4c4c4;
         box-sizing: border-box;
@@ -72,13 +72,17 @@
         background: #F8E4FF;
       }
 
+      .hidden {
+        display: none;
+      }
+
     </style>
   </head>
   <body>
     <article class="cont-select">
       <h2 class="txt-hide">최애 프로그래밍 언어를 선택해 주세요.</h1>
-      <button type="button" class="select-btn txt-ellipsis on">최애 프로그래밍 언어</button>
-      <ul class="lang-list">
+      <button type="button" class="select-btn txt-ellipsis bg-down">최애 프로그래밍 언어</button>
+      <ul class="lang-list hidden">
         <li><button type="button" class="txt-ellipsis">Python</button></li>
         <li><button type="button" class="txt-ellipsis">Java</button></li>
         <li><button type="button" class="txt-ellipsis">JavaScript</button></li>
@@ -86,6 +90,39 @@
         <li><button type="button" class="txt-ellipsis">C/C++</button></li>
       </ul>
     </article>
-    <script></script>
+    <script>
+      const container = document.querySelector(".cont-select");
+      const titleBtn = document.querySelector(".select-btn");
+      const langList = document.querySelector(".lang-list");
+      const langItem = langList.querySelectorAll("button");
+
+      function handleClose(event){
+        if (!container.contains(event.target)) {
+        langList.classList.add('hidden');
+    }
+      }
+
+      function titleBtnClick(){
+        langList.classList.toggle("hidden");
+        if (titleBtn.classList.contains("bg-down")) {
+          titleBtn.classList.remove("bg-down");
+          titleBtn.classList.add("bg-up");
+        } else {
+          titleBtn.classList.remove("bg-up");
+          titleBtn.classList.add("bg-down");
+        }
+      }
+
+      function langBtnClick(event){
+        const selected = event.target.innerText;
+        titleBtn.textContent = selected;
+        langList.classList.add('hidden');
+      }
+
+      document.addEventListener('click', handleClose);
+      titleBtn.addEventListener('click', titleBtnClick);
+      langList.addEventListener('click', langBtnClick);
+
+    </script>
   </body>
 </html>
